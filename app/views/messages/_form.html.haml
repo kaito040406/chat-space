@@ -1,0 +1,32 @@
+.chat-main
+  .main-header
+    .main-header__left-box
+      %h2.main-header__left-box__current-group
+        テスト
+      %ul.main-header__left-box__menber-list
+        Menber :kaitohasegawa
+        %li.main-header__left-box__menber-list__menber
+    %a{:href => " "}
+      .main-header__edit-btn
+        Edit
+  .messages
+    .message
+      .message__upper-info
+        %p.message__upper-info__talker
+          kaitohasegawa
+        %p.message__upper-info__date
+          2019/09/26(Thu) 14:07:09
+      %p.message__text
+        テスト投稿
+  .form
+    %form.new_message
+      .input-box
+        %input.input-box__text{:name => "message[content]", :placeholder => "type a message", :type => "text"}
+        %label.input-box__image
+          %a{:href => " "}
+            %i.fa.fa-image
+
+      %input{:class => "submit-btn", "data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}
+        
+
+       

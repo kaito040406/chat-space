@@ -1,0 +1,39 @@
+!!!
+.flash-box
+  .notice
+    グループを作成しました。
+
+
+.wrapper
+  .chat-side
+    .side-header
+      .side-header__box
+        %p.side-header__box__user-name
+          kaitohasegawa
+        %ul.side-header__box__menu
+          %li.side-header__box__menu__new-group
+          %li.side-header__box__menu__edit-user
+        .side-header__box__menu
+          %i.side-header__box__menu__new-group
+            %a{:href => " "}
+              %i.fa.fa-edit
+              %span<>
+          %i.side-header__box__menu__edit-user
+            %a{:href => " "}
+              %i.fa.fa-cog
+              %span<>
+
+    .groups
+      %a
+        .group
+          %p.group__group-name
+            %a{:href => "/messages/1"}
+              テスト
+              %span<>
+          %p.group__latest-name
+            %a{:href => "/messages/1"}
+              テスト投稿
+              %span<>
+  
+
+       
