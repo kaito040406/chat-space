@@ -21,11 +21,11 @@
   .form
     %form.new_message
       .input-box
-        %input.input-box__text{:name => "message[content]", :placeholder => "type a message", :type => "text"}
+        %input.input-box__text{name: "message[content]", placeholder: "type a message", type: "text"}
         %label.input-box__image
           = link_to " " do
             %i.fa.fa-image
-      %input{:class => "submit-btn", "data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}
+      %input{class: "submit-btn", "data-disable-with": "Send", name: "commit", type: "submit", value: "Send"}
         
 
        
