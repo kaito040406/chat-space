@@ -15,11 +15,11 @@
           %li.side-header__box__menu__edit-user
         .side-header__box__menu
           %i.side-header__box__menu__new-group
-            %a{:href => " "}
+            = link_to " " do
               %i.fa.fa-edit
               %span<>
           %i.side-header__box__menu__edit-user
-            %a{:href => " "}
+            = link_to " " do
               %i.fa.fa-cog
               %span<>
 
@@ -27,13 +27,13 @@
       %a
         .group
           %p.group__group-name
-            %a{:href => "/messages/1"}
-              テスト
-              %span<>
+            = link_to 'テスト' , "/messages/1" , method: :get 
+            %span<>
           %p.group__latest-name
-            %a{:href => "/messages/1"}
-              テスト投稿
-              %span<>
+            = link_to 'テスト' , "/messages/1" , method: :get
+            %span<>
+
+
   
 
        
