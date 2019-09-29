@@ -1,39 +1,35 @@
 !!!
-.flash-box
-  .notice
-    グループを作成しました。
-
-
 .wrapper
   .chat-side
     .side-header
       .side-header__box
         %p.side-header__box__user-name
-          kaitohasegawa
+          = current_user.name
         %ul.side-header__box__menu
           %li.side-header__box__menu__new-group
           %li.side-header__box__menu__edit-user
         .side-header__box__menu
           %i.side-header__box__menu__new-group
-            = link_to " " do
+            = link_to "/groups/new" , method: :get do
               %i.fa.fa-edit
               %span<>
           %i.side-header__box__menu__edit-user
-            = link_to " " do
+            = link_to edit_user_path(current_user) do
               %i.fa.fa-cog
               %span<>
 
     .groups
       %a
+      - current_user.groups.each do |group|
         .group
           %p.group__group-name
-            = link_to 'テスト' , "/messages/1" , method: :get 
+            = link_to group.name , "/groups/#{group.id}/messages" , method: :get 
             %span<>
           %p.group__latest-name
-            = link_to 'テスト' , "/messages/1" , method: :get
+            = link_to group.name , "/groups/#{group.id}/messages" , method: :get
             %span<>
 
 
-  
+  = render 'form-group'
 
-       
+  
