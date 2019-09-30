@@ -93,7 +93,8 @@
       padding-top: 35px;
       &__current-group{
         font-size: 20px;
-        color: #333333
+        color: #333333;
+        margin-bottom:0!important;
       }
       &__menber-list{
         padding-top:15px;
@@ -162,6 +163,9 @@
           i{
             color: black;
           } 
+        }
+        .hidden {
+          display: none;
         }
       }
       .submit-btn{

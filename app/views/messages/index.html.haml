@@ -1,39 +1,69 @@
 !!!
-.flash-box
-  .notice
-    グループを作成しました。
-
-
 .wrapper
   .chat-side
     .side-header
       .side-header__box
         %p.side-header__box__user-name
-          kaitohasegawa
+          = current_user.name
         %ul.side-header__box__menu
           %li.side-header__box__menu__new-group
           %li.side-header__box__menu__edit-user
         .side-header__box__menu
           %i.side-header__box__menu__new-group
-            = link_to " " do
+            = link_to "/groups/new" , method: :get do
               %i.fa.fa-edit
               %span<>
           %i.side-header__box__menu__edit-user
-            = link_to " " do
+            = link_to edit_user_path(current_user) do
               %i.fa.fa-cog
               %span<>
 
     .groups
       %a
+      - current_user.groups.each do |group|
         .group
           %p.group__group-name
-            = link_to 'テスト' , "/messages/1" , method: :get 
+            = link_to group.name , "/groups/#{group.id}/messages" , method: :get 
             %span<>
           %p.group__latest-name
-            = link_to 'テスト' , "/messages/1" , method: :get
+            = link_to group.show_last_message , "/groups/#{group.id}/messages" , method: :get
             %span<>
+
+
+  .chat-main
+    .main-header
+      .main-header__left-box
+        %h2.main-header__left-box__current-group
+          テスト
+        %ul.main-header__left-box__menber-list
+          Menber :kaitohasegawa
+          %li.main-header__left-box__menber-list__menber
+      = link_to "/groups/#{@message}/edit", class: "main-header__edit-btn" , method: :get  do
+        %span<>
+          Edit
+    .messages
+      .message
+        .message__upper-info
+          %p.message__upper-info__talker
+            kaitohasegawa
+          %p.message__upper-info__date
+            2019/09/26(Thu) 14:07:09
+        %p.message__text
+          テスト投稿
+    .form
+      .new_message
+        = form_for [@group, @message] do |f|
+          .input-box
+            = f.text_field :body, class: 'input-box__text', placeholder: 'type a message'
+            = f.label :image, class: 'input-box__image' do
+              = fa_icon 'picture-o', class: 'fa-image'
+              = f.file_field :image, class: 'hidden'
+          = f.submit 'Send', class: 'submit-btn', method: :post
+            
+
+       
 
 
   
 
-       
+  
