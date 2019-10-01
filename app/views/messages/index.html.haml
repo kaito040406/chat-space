@@ -43,13 +43,17 @@
           Edit
     .messages
       .message
+      - @messages.each do |message|
         .message__upper-info
           %p.message__upper-info__talker
-            kaitohasegawa
+            = message.user.name
           %p.message__upper-info__date
-            2019/09/26(Thu) 14:07:09
+            = message.created_at.strftime("%Y/%m/%d %H:%M")
         %p.message__text
-          テスト投稿
+          - if message.body.present?
+            %p.lower-message__content
+              = message.body
+              = image_tag message.image.url, class: 'lower-message__image' if message.image.present?
     .form
       .new_message
         = form_for [@group, @message] do |f|
