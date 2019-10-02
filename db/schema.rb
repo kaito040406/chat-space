@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20190929114055) do
   end
 
   create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "body",       limit: 65535
+    t.text     "body",       limit: 65535, null: false
     t.string   "image"
     t.integer  "group_id",                 null: false
     t.integer  "user_id",                  null: false
