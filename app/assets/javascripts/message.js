@@ -63,6 +63,7 @@ $(function(){
         var html2 = buildMessage2(message); 
         $('.messages').append(html2);
         $('#message_body').val('');
+        $('#message_image').val('');
         console.log("画像あり投稿OK");
       }
       $('html, body').animate({

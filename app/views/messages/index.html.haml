@@ -38,7 +38,7 @@
         %ul.main-header__left-box__menber-list
           Menber :kaitohasegawa
           %li.main-header__left-box__menber-list__menber
-      = link_to "/groups/#{@message}/edit", class: "main-header__edit-btn" , method: :get  do
+      = link_to "/groups/#{@group.id}/edit", class: "main-header__edit-btn" , method: :get  do
         %span<>
           Edit
     .messages
