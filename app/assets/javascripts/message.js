@@ -39,7 +39,7 @@ $(function(){
       if (message.image.url == null){
         var pic = ''
       }else{
-        var pic = '<img class="lower-message__image" src="' + message.image.url + '" alt="Ph thumb"></img>'
+        var pic = message.image.url ? `<img class="lower-message__image" src="${message.image.url}" alt="Ph thumb"></img>` : '';
       }
       var html = buildMessage1(message, pic); 
       $('.messages').append(html);
