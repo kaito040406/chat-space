@@ -10,7 +10,7 @@
           %li.side-header__box__menu__edit-user
         .side-header__box__menu
           %i.side-header__box__menu__new-group
-            = link_to "/groups/new" , method: :get do
+            = link_to new_group_path , method: :get do
               %i.fa.fa-edit
               %span<>
           %i.side-header__box__menu__edit-user
@@ -23,10 +23,10 @@
       - current_user.groups.each do |group|
         .group
           %p.group__group-name
-            = link_to group.name , "/groups/#{group.id}/messages" , method: :get 
+            = link_to group.name ,group_messages_path, method: :get 
             %span<>
           %p.group__latest-name
-            = link_to group.show_last_message , "/groups/#{group.id}/messages" , method: :get
+            = link_to group.show_last_message , group_messages_path , method: :get
             %span<>
 
 
@@ -38,7 +38,7 @@
         %ul.main-header__left-box__menber-list
           Menber :kaitohasegawa
           %li.main-header__left-box__menber-list__menber
-      = link_to "/groups/#{@group.id}/edit", class: "main-header__edit-btn" , method: :get  do
+      = link_to edit_group_path(@group.id), class: "main-header__edit-btn" , method: :get  do
         %span<>
           Edit
     .messages

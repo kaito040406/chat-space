@@ -1,7 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_group
   def index
-    #binding.pry
     @message = Message.new
     @messages = @group.messages.includes(:user)
   end
@@ -12,8 +11,6 @@ class MessagesController < ApplicationController
   def create
     @message = @group.messages.new(message_params)
     if @message.save
-      #binding.pry
-      #redirect_to group_messages_path(@group), notice: 'メッセージが送信されました'
       respond_to do |format|
         format.html{ redirect_to group_messages_path(@group) }
         format.json

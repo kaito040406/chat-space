@@ -1,6 +1,6 @@
 $(function(){
-  function buildMessage1(message){
-    var html1 = `<div class="message-box">
+  function buildMessage1(message, pic1,pic2,pic3){
+    var html = `<div class="message-box">
                   <div class="message__upper-info">
                     <p class="message__upper-info__talker">
                       ${message.name}
@@ -11,32 +11,14 @@ $(function(){
                   </div>
                     <p class="message__text">
                     </p><p class="lower-message__content">
-                    ${message.body}
+                      ${message.body}
                     </p>
+                      ${pic1}${pic2}${pic3}
                     <p></p>
                 </div>`
-    return html1;
+    return html;
   }
 
-  function buildMessage2(message){
-    var html2 = `<div class="message-box">
-                  <div class="message__upper-info">
-                    <p class="message__upper-info__talker">
-                      ${message.name}
-                    </p>
-                    <p class="message__upper-info__date">
-                      ${message.date}
-                    </p>
-                  </div>
-                    <p class="message__text">
-                    </p><p class="lower-message__content">
-                    ${message.body}
-                    </p>
-                    <img class="lower-message__image" src="${message.image.url}" alt="Ph thumb"></img>
-                    <p></p>
-                </div>`
-    return html2;
-  }
 
 
 
@@ -55,17 +37,17 @@ $(function(){
     })
     .done(function(message){
       if (message.image.url == null){
-        var html1 = buildMessage1(message); 
-        $('.messages').append(html1);
-        $('#message_body').val('');
-        console.log("画像なし投稿OK");
-      } else{
-        var html2 = buildMessage2(message); 
-        $('.messages').append(html2);
-        $('#message_body').val('');
-        $('#message_image').val('');
-        console.log("画像あり投稿OK");
+        var pic1 = ''
+        var pic2 = ''
+        var pic3 = ''
+      }else{
+        var pic1 = '<img class="lower-message__image" src="'
+        var pic2 = message.image.url
+        var pic3 = '" alt="Ph thumb"></img>'
       }
+      var html = buildMessage1(message, pic1,pic2,pic3); 
+      $('.messages').append(html);
+      $('form').get(0).reset();
       $('html, body').animate({
         scrollTop: $(document).height()
       },2000);
