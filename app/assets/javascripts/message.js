@@ -7,6 +7,7 @@ $(function(){
                     </p>
                     <p class="message__upper-info__date">
                       ${message.date}
+                      
                     </p>
                   </div>
                     <p class="message__text">
@@ -31,10 +32,16 @@ $(function(){
       contentType: false
     })
     .done(function(message){
-      var html = buildMessage(message);
-      console.log("投稿OK");
+      var html = buildMessage(message); 
       $('.messages').append(html);
-      $('#new_message').val('');
+      $('#message_body').val('');
+      console.log("投稿OK");
+
+      $('html, body').animate({
+        scrollTop: $(document).height()
+      },2000);
+      return false;
+
     })
     .fail(function(){
       alert('error');
