@@ -31,11 +31,7 @@ $(function(){
       contentType: false
     })
     .done(function(message){
-      if (message.image.url == null){
-        var pic = ''
-      }else{
-        var pic = message.image.url ? `<img class="lower-message__image" src="${message.image.url}" alt="Ph thumb"></img>` : '';
-      }
+      message.image.url?  pic = `<img class="lower-message__image" src="${message.image.url}" alt="Ph thumb"></img>` : pic = ''  ;
       var html = buildMessage1(message, pic); 
       $('.messages').append(html);
       $('form').get(0).reset();
@@ -43,14 +39,12 @@ $(function(){
         scrollTop: $(document).height()
       },2000);
       return false;
-
     })
     .fail(function(){
       alert('error');
     })
     .always(() => {
       $(".submit-btn").removeAttr("disabled");
-     
     });
   });
 });
