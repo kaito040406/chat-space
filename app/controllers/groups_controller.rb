@@ -1,4 +1,12 @@
 class GroupsController < ApplicationController
+  def search
+    @users = User.where('name LIKE(?)', "%#{params[:keyword]}%").limit(10)
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
   def index
   end
   
@@ -12,7 +20,6 @@ class GroupsController < ApplicationController
   end
 
   def create
-    binding.pry
     @group = Group.new(group_params)
     if @group.save
       redirect_to root_path, notice: 'グループを作成しました'
