@@ -31,7 +31,7 @@ $(function(){
       contentType: false
     })
     .done(function(message){
-      message.image.url?  pic = `<img class="lower-message__image" src="${message.image.url}" alt="Ph thumb"></img>` : pic = ''  ;
+      var pic = message.image.url ? `<img class="lower-message__image" src="${message.image.url}" alt="Ph thumb"></img>` : '';
       var html = buildMessage1(message, pic); 
       $('.messages').append(html);
       $('form').get(0).reset();
