@@ -1,7 +1,4 @@
 class GroupsController < ApplicationController
-  def search
-    
-  end
 
   def index
   end
