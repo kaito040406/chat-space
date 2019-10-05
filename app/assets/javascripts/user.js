@@ -60,7 +60,7 @@ $(function() {
 
 function appendAdd(name, boxid3,boxid4){
   var html2 = `<div class='chat-group-user' value = "${boxid3}" id = "${boxid3}name3">
-                <input name='group[user_ids][${boxid3}]' type='hidden' value='#'>
+                <input name='group[user_ids]][${name}]' type='hidden' value='${boxid3}'>
                 <p class='chat-group-user__name'>${name}</p>
                 <div class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn' id = "${boxid3}name3">削除</div>
               </div>`

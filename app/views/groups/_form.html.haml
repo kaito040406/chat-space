@@ -22,7 +22,30 @@
       %input#user-search-field.chat-group-form__input{:placeholder => "追加したいユーザー名を入力してください", :type => "text", :name => "keyword"}/
       #user-search-result
       / この部分はインクリメンタルサーチ(ユーザー追加の非同期化)のときにも使用します
+
+
+
+      .chat-group-user{:id => current_user.id.to_s + "name3", :value => current_user.id}
+        %input{:name => "group[user_ids]][]", :type => "hidden", :value => current_user.id}/
+        %p.chat-group-user__name 
+          =current_user.name 
+        .user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn{:id => current_user.id.to_s + "name3"}
+
+
+
+    - if group.id != nil
+      - group.users.each do |user|
+        - if current_user.id != user.id
+          .chat-group-user{:id => user.id.to_s + "name3", :value => user.id}
+            %input{:name => "group[user_ids]][]", :type => "hidden", :value => user.id}/
+            %p.chat-group-user__name 
+              =user.name 
+            .user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn{:id => user.id.to_s + "name3"} 削除
+        
+      
+  
+  
   .chat-group-form__field
     .chat-group-form__field--left
     .chat-group-form__field--right
-      = f.submit class: 'chat-group-from__action-btn'
+      = f.submit class: 'chat-group-from__action-btn' 
