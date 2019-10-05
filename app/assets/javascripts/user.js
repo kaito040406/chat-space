@@ -59,10 +59,10 @@ $(function() {
 
 
 function appendAdd(name, boxid3,boxid4){
-  var html2 = `<div class='chat-group-user' value = "${boxid3}">
-                <input name='group[user_ids][${boxid3}]' type='hidden' value='${boxid4}'>
+  var html2 = `<div class='chat-group-user' value = "${boxid3}" id = "${boxid3}name3">
+                <input name='group[user_ids][${boxid3}]' type='hidden' value='#'>
                 <p class='chat-group-user__name'>${name}</p>
-                <div class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</div>
+                <div class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn' id = "${boxid3}name3">削除</div>
               </div>`
   return html2
 }
@@ -80,7 +80,6 @@ $(function() {
     $.ajax({
       type: 'GET',
       url:  '/users',
-      data: { id: boxid3 },
       dataType: 'json'
     }) 
     .done(function(user){
@@ -92,3 +91,20 @@ $(function() {
   });
 });
 
+
+$(function() {
+  $(document).on('click', '.user-search-remove', function(e){
+    e.preventDefault();
+    var boxid2 = $(this).attr("id");
+    $.ajax({
+      type: 'GET',
+      url:  '/users',
+      dataType: 'json'
+    }) 
+    .done(function(user){
+      console.log(boxid2);
+      $('#'+boxid2).remove();
+      $('#'+boxid2).unwrap();
+    });
+  });
+});

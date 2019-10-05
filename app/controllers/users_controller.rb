@@ -1,24 +1,10 @@
 class UsersController < ApplicationController
-  
   def index
-      #binding.pry
-      if params[:id] == nil then
-        #binding.pry
-        @users = User.where('name LIKE(?)', "#{params[:keyword]}%").where.not(id:current_user).limit(10)
-        respond_to do |format|
-          format.html
-          format.json
-        end
-      else
-        #binding.pry
-        @users = User.where('name LIKE(?)', "#{params[:keyword]}%").where.not(id:current_user).where.not(id: "#{params[:id]}").limit(10)
-        
-        respond_to do |format|
-          format.html
-          format.json
-        end
+      @users = User.where('name LIKE(?)', "#{params[:keyword]}%").limit(10)
+      respond_to do |format|
+        format.html
+        format.json
       end
-      
   end
   
   def edit
