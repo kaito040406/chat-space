@@ -39,9 +39,13 @@ $(function() {
         users.forEach(function(user){
           $('#user-search-result').append(appendUser(user));
         })
+        if($("#user-search-field").val() == ""){
+          console.log("OK");
+          $(".search-box").remove();
+        }
       }
       else{
-        $('#user-search-result').append(appendMsg());
+          $('#user-search-result').append(appendMsg());
       }
     })
     .fail(function(){
