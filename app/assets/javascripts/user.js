@@ -2,9 +2,9 @@ $(function() {
   function appendUser(user){
     
     var html = `
-                <div class = "search-box" id = "${user.id}name2" value = "${user.id}">
+                <div class = "search-box" id = "${user.id}" value = "${user.id}">
                   <div class="chat-group-user clearfix">
-                    <p class="chat-group-user__name" id = "${user.id}name1">${ user.name }</p>
+                    <p class="chat-group-user__name" id = "${user.id}name">${ user.name }</p>
                     <a class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="60" data-user-name="ll" id = "${user.id}">追加</a>
                   </div>
                 </div>
@@ -23,8 +23,6 @@ $(function() {
     return html;
   }
 
-
-
   $("#user-search-field").on("keyup", function(){
     var input = $("#user-search-field").val();
     $.ajax({
@@ -42,7 +40,6 @@ $(function() {
         if($("#user-search-field").val() == ""){
           $(".search-box").remove();
         }
- 
         if($(".chat-group-user").attr("value") == $(".search-box").attr("value")){
           $(".search-box","#" + $(".search-box").attr("value")).remove();
         }
@@ -57,36 +54,31 @@ $(function() {
   });
 });
 
-
-function appendAdd(name, boxid3,boxid4){
-  var html2 = `<div class='chat-group-user' value = "${boxid3}" id = "${boxid3}name3">
-                <input name='group[user_ids]][${name}]' type='hidden' value='${boxid3}'>
-                <p class='chat-group-user__name'>${name}</p>
+function appendAdd(name, boxid3,){
+  var html2 = `<div class='chat-group-user' id = "${boxid3}name3" value = "${boxid3}">
+                <input name='group[user_ids]][]' type='hidden' value='${boxid3}'>
+                <p class='chat-group-user__name'>
+                ${name}
+                </p>
                 <div class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn' id = "${boxid3}name3">削除</div>
               </div>`
   return html2
 }
 
-
 $(function() {
   $(document).on('click', '.user-search-add', function(e){
     e.preventDefault();
-    var boxid1 = $(this).attr("id") + "name1";
-    var boxid2 = "#" + $(this).attr("id") + "name2";
-    var boxid4 = $(this).attr("id") + "name2";
-    var boxid3 = $(this).attr("id")
-    console.log(boxid3)
-    var name = $("#"+boxid1).text();
+    var boxid = $(this).attr("id");
     $.ajax({
       type: 'GET',
       url:  '/users',
       dataType: 'json'
     }) 
     .done(function(user){
-      var add = appendAdd(name, boxid3, boxid4);
+      var add = appendAdd($("#"+boxid+"name").text(), boxid);
       $(".chat-group-form__search").append(add);
-      $(boxid2).remove();
-      $(boxid2).unwrap();
+      $("#" + boxid).remove();
+      $("#" + boxid).unwrap();
     });
   });
 });
@@ -95,16 +87,16 @@ $(function() {
 $(function() {
   $(document).on('click', '.user-search-remove', function(e){
     e.preventDefault();
-    var boxid2 = $(this).attr("id");
+    var boxid = $(this).attr("id");
     $.ajax({
       type: 'GET',
       url:  '/users',
       dataType: 'json'
     }) 
     .done(function(user){
-      console.log(boxid2);
-      $('#'+boxid2).remove();
-      $('#'+boxid2).unwrap();
+      console.log(boxid);
+      $('#'+boxid).remove();
+      $('#'+boxid).unwrap();
     });
   });
 });

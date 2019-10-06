@@ -9,13 +9,10 @@ class GroupsController < ApplicationController
   end
 
   def edit
-    #binding.pry
     @group = Group.find(params[:id])
-    #binding.pry
   end
 
   def create
-    #binding.pry
     @group = Group.new(group_params)
     if @group.save
       redirect_to root_path, notice: 'グループを作成しました'
@@ -25,7 +22,6 @@ class GroupsController < ApplicationController
   end
 
   def update
-    #binding.pry
     @group = Group.find(params[:id])
     if @group.update(group_params)
       redirect_to group_messages_path(@group.id), notice: 'グループを編集しました'
