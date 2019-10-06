@@ -54,13 +54,13 @@ $(function() {
   });
 });
 
-function appendAdd(name, boxid3,){
-  var html2 = `<div class='chat-group-user' id = "${boxid3}name3" value = "${boxid3}">
-                <input name='group[user_ids]][]' type='hidden' value='${boxid3}'>
+function appendAdd(name, boxid){
+  var html2 = `<div class='chat-group-user' id = "${boxid}name3" value = "${boxid}">
+                <input name='group[user_ids]][]' type='hidden' value='${boxid}'>
                 <p class='chat-group-user__name'>
                 ${name}
                 </p>
-                <div class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn' id = "${boxid3}name3">削除</div>
+                <div class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn' id = "${boxid}name3">削除</div>
               </div>`
   return html2
 }
@@ -76,7 +76,7 @@ $(function() {
     }) 
     .done(function(user){
       var add = appendAdd($("#"+boxid+"name").text(), boxid);
-      $(".chat-group-form__search").append(add);
+      $(".chat-group-menber").append(add);
       $("#" + boxid).remove();
       $("#" + boxid).unwrap();
     });
