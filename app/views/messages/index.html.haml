@@ -23,7 +23,7 @@
       - current_user.groups.each do |group|
         .group
           %p.group__group-name
-            = link_to group.name ,group_messages_path, method: :get 
+            = link_to group.name ,group_messages_path(group.id), method: :get 
             %span<>
           %p.group__latest-name
             = link_to group.show_last_message , group_messages_path , method: :get
@@ -34,9 +34,11 @@
     .main-header
       .main-header__left-box
         %h2.main-header__left-box__current-group
-          テスト
+          = @group.name
         %ul.main-header__left-box__menber-list
-          Menber :kaitohasegawa
+          Menber :
+          - @group.users.each do |user|
+            = user.name
           %li.main-header__left-box__menber-list__menber
       = link_to edit_group_path(@group.id), class: "main-header__edit-btn" , method: :get  do
         %span<>
