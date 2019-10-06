@@ -1,3 +1,4 @@
+
 body{
   background-color: #fafafa;
 }
@@ -12,6 +13,8 @@ body{
     text-align: center;
   }
 }
+
+
 
 .chat-side{
   height: 100vh;
@@ -54,7 +57,7 @@ body{
     width: 260px;
     background-color: #2f3e51;
     padding:0 20px;
-    overflow: auto;
+    overflow: scroll;
     .group{
       &__group-name{
         padding-top: 20px;
