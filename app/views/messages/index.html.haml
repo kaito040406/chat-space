@@ -24,6 +24,7 @@
         .group
           %p.group__group-name
             = link_to group.name ,group_messages_path(group.id), method: :get 
+
             %span<>
           %p.group__latest-name
             = link_to group.show_last_message , group_messages_path , method: :get

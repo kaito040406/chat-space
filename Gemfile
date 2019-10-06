@@ -58,6 +58,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'pry-rails'
 gem 'sprockets', '3.7.2'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'rspec-rails'

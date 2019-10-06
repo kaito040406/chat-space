@@ -1,6 +1,8 @@
+
 body{
   background-color: #fafafa;
 }
+
 
 .flash-box{
   width: 100%;
@@ -12,6 +14,8 @@ body{
     text-align: center;
   }
 }
+
+
 
 .chat-side{
   height: 100vh;
@@ -55,6 +59,7 @@ body{
     background-color: #2f3e51;
     padding:0 20px;
     overflow: auto;
+
     .group{
       &__group-name{
         padding-top: 20px;
