@@ -40,9 +40,6 @@ $(function() {
         if($("#user-search-field").val() == ""){
           $(".search-box").remove();
         }
-        if($(".chat-group-user").attr("value") == $(".search-box").attr("value")){
-          $(".search-box","#" + $(".search-box").attr("value")).remove();
-        }
       }
       else{
           $('#user-search-result').append(appendMsg());

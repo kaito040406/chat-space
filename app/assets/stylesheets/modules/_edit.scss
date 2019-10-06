@@ -1,7 +1,4 @@
 
-
-.new_group{ 
-  box-sizing: border-box;
   .chat-group-form__field{
     .chat-group-form__field--left{
       float: left;
@@ -21,12 +18,12 @@
       width: 70%;
       line-height: 50px;
       .chat_group_name{
-        height: 50px !important;
-        float: left !important;
-        width: 100% !important;
-        line-height: 30px !important;
-        padding: 10px 15px !important;
-        box-sizing: border-box !important;
+        height: 50px;
+        float: left;
+        width: 100%;
+        line-height: 30px;
+        padding: 10px 15px;
+        box-sizing: border-box;
       }
     }
   }
@@ -82,4 +79,3 @@
       }
     }
   }
-}
