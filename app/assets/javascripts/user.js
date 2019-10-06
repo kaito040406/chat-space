@@ -65,35 +65,20 @@ function appendAdd(name, boxid){
 $(function() {
   $(document).on('click', '.user-search-add', function(e){
     e.preventDefault();
-    var boxid = $(this).attr("id");
-    $.ajax({
-      type: 'GET',
-      url:  '/users',
-      dataType: 'json'
-    }) 
-    .done(function(user){
-      var add = appendAdd($("#"+boxid+"name").text(), boxid);
-      $(".chat-group-menber").append(add);
-      $("#" + boxid).remove();
-      $("#" + boxid).unwrap();
+    var boxid = $(this).attr("id");  
+    var add = appendAdd($("#"+boxid+"name").text(), boxid);
+    $(".chat-group-menber").append(add);
+    $("#" + boxid).remove();
+    $("#" + boxid).unwrap();
     });
   });
-});
-
 
 $(function() {
   $(document).on('click', '.user-search-remove', function(e){
     e.preventDefault();
     var boxid = $(this).attr("id");
-    $.ajax({
-      type: 'GET',
-      url:  '/users',
-      dataType: 'json'
-    }) 
-    .done(function(user){
-      console.log(boxid);
-      $('#'+boxid).remove();
-      $('#'+boxid).unwrap();
+    $('#'+boxid).remove();
+    $('#'+boxid).unwrap();
     });
   });
-});
+
