@@ -1,6 +1,6 @@
 $(function(){
   function buildMessage1(message, pic){
-    var html = `<div class="message-box">
+    var html = `<div class="message-box" id = "${message.id}">
                   <div class="message__upper-info">
                     <p class="message__upper-info__talker">
                       ${message.name}
@@ -47,5 +47,80 @@ $(function(){
       $(".submit-btn").removeAttr("disabled");
     });
   });
+
+    var buildMessageHTML = function(message) {
+      if (message.content && message.image.url) {
+        //data-idが反映されるようにしている
+        var html = '<div class="message" data-id=' + message.id + '>' +
+          '<div class="upper-message">' +
+            '<div class="upper-message__user-name">' +
+              message.user_name +
+            '</div>' +
+            '<div class="upper-message__date">' +
+              message.created_at +
+            '</div>' +
+          '</div>' +
+          '<div class="lower-message">' +
+            '<p class="lower-message__content">' +
+              message.content +
+            '</p>' +
+            '<img src="' + message.image.url + '" class="lower-message__image" >' +
+          '</div>' +
+        '</div>'
+        }else if (message.content) {
+          //同様に、data-idが反映されるようにしている
+          var html = '<div class="message" data-id=' + message.id + '>' +
+            '<div class="upper-message">' +
+              '<div class="upper-message__user-name">' +
+                message.user_name +
+              '</div>' +
+              '<div class="upper-message__date">' +
+                message.created_at +
+              '</div>' +
+            '</div>' +
+            '<div class="lower-message">' +
+              '<p class="lower-message__content">' +
+                message.content +
+              '</p>' +
+            '</div>' +
+          '</div>'
+      }else if (message.image.url) {
+        //同様に、data-idが反映されるようにしている
+        var html = '<div class="message" data-id=' + message.id + '>' +
+          '<div class="upper-message">' +
+            '<div class="upper-message__user-name">' +
+              message.user_name +
+            '</div>' +
+            '<div class="upper-message__date">' +
+              message.created_at +
+            '</div>' +
+          '</div>' +
+          '<div class="lower-message">' +
+            '<img src="' + message.image.url + '" class="lower-message__image" >' +
+          '</div>' +
+        '</div>'
+      };
+      return html;
+  }
+
+
+  var reloadMessages = function(){
+    last_message_id = $('.message-box').last().attr('id');
+    console.log(last_message_id);
+    var urldata = "groups/" + last_message_id;
+    $.ajax({
+      url: urldata,
+      type: 'GET',
+      dagaType: 'json',
+      data: {id: last_message_id}
+    })
+    .done(function(messages){
+      console.lod('success');
+    })
+    .fail(function(){
+      console.log('error');
+    });
+  };
+  setInterval(reloadMessages, 5000);
 });
 

@@ -47,7 +47,7 @@
     .messages
       .message
       - @messages.each do |message|
-        .message-box{data: {create: {data: "#{message.id}"}}}
+        .message-box{id: "#{message.id}"}
           .message__upper-info
             %p.message__upper-info__talker
               = message.user.name
