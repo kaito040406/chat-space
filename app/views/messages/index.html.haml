@@ -21,7 +21,7 @@
     .groups
       %a
       - current_user.groups.each do |group|
-        .group
+        .group{id: "group#{group.id}", value: "#{group.name}"}
           %p.group__group-name
             = link_to group.name ,group_messages_path(group.id), method: :get 
 
@@ -34,7 +34,7 @@
   .chat-main
     .main-header
       .main-header__left-box
-        %h2.main-header__left-box__current-group{id: "#{@group.id}"}
+        %h2.main-header__left-box__current-group{id: "#{@group.id}", value: "#{@group.name}"}
           = @group.name
         %ul.main-header__left-box__menber-list
           Menber :
@@ -47,7 +47,7 @@
     .messages
       .message
       - @messages.each do |message|
-        .message-box{id: "#{message.id}"}
+        .message-box{id: "#{message.id}", value:"#{message.body}"}
           .message__upper-info
             %p.message__upper-info__talker
               = message.user.name
