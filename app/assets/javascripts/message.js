@@ -93,9 +93,7 @@ $(function(){
       insertHTML = [];
       topHTML = [];
       $('#group'+group_id).empty();
-      console.log(group_id);
       if(last_message_text == ""){ last_message_text = "画像が投稿されています"};
-      console.log(last_message_text);
       topHTML = buildtopHTML(last_message_text, group_id, group_name);
       $('#group'+group_id).append(topHTML);
       topHTML = "";
@@ -114,7 +112,7 @@ $(function(){
       })
     })
     .fail(function(){
-      console.log('error');
+      console.log('自動更新失敗');
     });
   };
   setInterval(reloadMessages, 1500);
