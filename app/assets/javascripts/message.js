@@ -94,13 +94,15 @@ $(function(){
       topHTML = [];
       $('#group'+group_id).empty();
       console.log(group_id);
+      if(last_message_text == ""){ last_message_text = "画像が投稿されています"};
+      console.log(last_message_text);
       topHTML = buildtopHTML(last_message_text, group_id, group_name);
       $('#group'+group_id).append(topHTML);
       topHTML = "";
       messages.forEach(function(message){
         var pic = message.image.url ? `<img class="lower-message__image" src="${message.image.url}" alt="Ph thumb"></img>` : '';
         insertHTML[i] = buildMessageHTML(message, pic); 
-        if(message.text == null){ message = "画像が投稿されています"};
+        
         if(last_message_id < message.id){
           $('.messages').append(insertHTML[i]);
           i = i + 1;
