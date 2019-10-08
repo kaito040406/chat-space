@@ -112,7 +112,7 @@ $(function(){
       })
     })
     .fail(function(){
-      console.log('自動更新失敗');
+      alert('自動更新失敗');
     });
   };
   setInterval(reloadMessages, 1500);
