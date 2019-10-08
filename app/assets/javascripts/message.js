@@ -117,6 +117,6 @@ $(function(){
       console.log('error');
     });
   };
-  setInterval(reloadMessages, 800);
+  setInterval(reloadMessages, 1500);
 });
 
