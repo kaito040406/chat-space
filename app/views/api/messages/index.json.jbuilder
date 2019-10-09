@@ -5,3 +5,4 @@ json.array! @messages do |message|
   json.name message.user.name
   json.id message.id
 end
+

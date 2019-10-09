@@ -21,10 +21,10 @@
     .groups
       %a
       - current_user.groups.each do |group|
-        .group
-          %p.group__group-name
-            = link_to group.name , "/groups/#{group.id}/messages" , method: :get 
+        .group{id: "#{group.id}", value: "#{group.name}"}
+          %p.group__group-name{id: "#{group.id}"}
+            = link_to group.name ,group_messages_path(group.id), method: :get 
             %span<>
-          %p.group__latest-name
-            = link_to group.name , "/groups/#{group.id}/messages" , method: :get
+          %p.group__latest-name{id: "#{group.id}ms"}
+            = link_to group.show_last_message , group_messages_path(group.id) , method: :get
             %span<>

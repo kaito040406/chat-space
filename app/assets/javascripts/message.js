@@ -1,6 +1,9 @@
 
 $(function(){
   i = 0;
+  j = 0;
+  k = 0;
+  
   function buildMessage1(message, pic){
     var html = `<div class="message-box" id = "${message.id}" value = "${message.body}">
                   <div class="message__upper-info">
@@ -24,6 +27,8 @@ $(function(){
     e.preventDefault();
     var formData = new FormData(this);
     var url = $(this).attr('action');
+    group_id = $('.main-header__left-box__current-group').attr('id');
+    group_name = $('.main-header__left-box__current-group').attr('value');
     $.ajax({
       url: url,
       type: "POST",
@@ -37,9 +42,22 @@ $(function(){
       var html = buildMessage1(message, pic); 
       $('.messages').append(html);
       $('form').get(0).reset();
-      $('html, body').animate({
-        scrollTop: $(document).height()
-      },2000);
+      document.querySelector("#audio").play();
+
+
+
+      $('#'+group_id).empty();
+      if(message.body == ""){ message.body = "画像が投稿されています"};
+      topHTML = buildtopHTML(message.body, group_id, group_name);
+      $('#'+group_id).append(topHTML);
+      topHTML = "";
+
+
+
+
+      $('.messages').animate({
+        scrollTop: $('.messages')[0].scrollHeight
+      },600);
       return false;
     })
     .fail(function(){
@@ -78,43 +96,57 @@ $(function(){
       return html;
     }
   var reloadMessages = function(message, group_id, group_name){
-    last_message_id = $('.message-box').last().attr('id');
-    last_message_text = $('.message-box').last().attr('value');
+    path = location.pathname
     group_id = $('.main-header__left-box__current-group').attr('id');
-    group_name = $('.main-header__left-box__current-group').attr('value');
-
-    $.ajax({
-      url: '/groups/' + group_id + '/api/messages',
-      type: 'get',
-      dagaType: 'json',
-      data: {id: last_message_id}
-    })
-    .done(function(messages){
-      insertHTML = [];
-      topHTML = [];
-      $('#group'+group_id).empty();
-      if(last_message_text == ""){ last_message_text = "画像が投稿されています"};
-      topHTML = buildtopHTML(last_message_text, group_id, group_name);
-      $('#group'+group_id).append(topHTML);
-      topHTML = "";
-      messages.forEach(function(message){
-        var pic = message.image.url ? `<img class="lower-message__image" src="${message.image.url}" alt="Ph thumb"></img>` : '';
-        insertHTML[i] = buildMessageHTML(message, pic); 
-        
-        if(last_message_id < message.id){
-          $('.messages').append(insertHTML[i]);
-          i = i + 1;
-          $('html, body').animate({
-            scrollTop: $(document).height()
-          },2000);
-        };
-        var pic = "";
+    if (path == "/groups/" + group_id + "/messages"){
+      last_message_id = $('.message-box').last().attr('id');
+      last_message_text = $('.message-box').last().attr('value');
+      group_name = $('.main-header__left-box__current-group').attr('value');
+      console.log(path);
+      $.ajax({
+        url: '/groups/' + group_id + '/api/messages',
+        type: 'get',
+        dagaType: 'json',
+        data: {id: last_message_id}
       })
-    })
-    .fail(function(){
-      alert('自動更新失敗');
-    });
-  };
-  setInterval(reloadMessages, 1500);
+      .done(function(messages){
+        insertHTML = [];
+        topHTML = [];
+        
+
+
+        //サイドバー自動更新はじまり
+
+          $('#'+group_id).empty();
+          if(last_message_text == ""){ last_message_text = "画像が投稿されています"};
+          topHTML = buildtopHTML(last_message_text, group_id, group_name);
+          $('#'+group_id).append(topHTML);
+          topHTML = "";
+        
+        //サイドバー自動更新おわり
+
+
+        messages.forEach(function(message){
+          
+          var pic = message.image.url ? `<img class="lower-message__image" src="${message.image.url}" alt="Ph thumb"></img>` : '';
+          insertHTML[i] = buildMessageHTML(message, pic); 
+          if(last_message_id < message.id){
+            $('.messages').append(insertHTML[i]);
+            document.querySelector("#audio").play();
+            i = i + 1;
+            $('.messages').animate({
+              scrollTop: $('.messages')[0].scrollHeight
+            },600);
+          };
+          var pic = "";
+        })
+      })
+      .fail(function(){
+        alert('自動更新失敗');
+      }); 
+    }else{
+
+    }
+  };setInterval(reloadMessages, 800);
 });
 
