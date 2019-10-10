@@ -114,9 +114,8 @@ $(function(){
         topHTML = [];
         
 
-
+        if ($(".message-box").length != 0){
         //サイドバー自動更新はじまり
-
           $('#'+group_id).empty();
           if(last_message_text == ""){ last_message_text = "画像が投稿されています"};
           topHTML = buildtopHTML(last_message_text, group_id, group_name);
@@ -124,7 +123,7 @@ $(function(){
           topHTML = "";
         
         //サイドバー自動更新おわり
-
+        }
 
         messages.forEach(function(message){
           
