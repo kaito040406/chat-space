@@ -3,25 +3,25 @@ body{
   background-color: #fafafa;
 }
 
-
 .flash-box{
-  width: 100%;
-  background-color: #38AEF0;
-  position: flex;
+  color: white;
+  font-size: 1rem;
+  font-weight: lighter;
+  text-align: center;
+  width: 100vw;
   .notice{
-    color:#FFFFFF;
-    line-height: 24px;
-    text-align: center;
+    background-color: #38aef0;
+  }
+  .alert{
+    background-color: #F35500;
   }
 }
 
-
-
 .chat-side{
-  height: 100vh;
   width: 300px;
   float: left;
-  position: fixed;
+
+  box-sizing: border-box;
   
   .side-header {
     height: 100px;
@@ -54,7 +54,7 @@ body{
     
   }
   .groups{
-    height: calc(100% - 100px);
+    height: calc(100vh - 100px);
     width: 260px;
     background-color: #2f3e51;
     padding:0 20px;
@@ -91,9 +91,8 @@ body{
   margin: 0 0 0 300px;
   .main-header{
     height: 100px;
-    width: calc(100% - 380px);
+    width: calc(100% - 80px);
     border-bottom: 1px solid #eeeeee;
-    position: fixed;
     background-color: white;
     padding: 0 40px;
     z-index: 30;
@@ -111,24 +110,23 @@ body{
       } 
     }
     &__edit-btn{
-      position: absolute;
-      line-height: 40px;
-      padding:0 20px;
+      position: relative;
+      padding:11px 20px;
       border: solid 1px #38AEF0;
       color: #38AEF0;
       text-decoration: none;
       text-align: center;
-      top: 28px;
-      right: 40px;
+      bottom: 60px;
+      left: 493px;
     }
   }
   .messages{
-    height: auto;
+    height: calc(100vh - 243px);
     width: calc(100% - 80px);
     background-color: #fafafa;
-    position:relative;
     top: 100px;
-    padding: 6px 40px 136px 40px;
+    padding: 6px 40px 46px 40px;
+    overflow: scroll;
     .message{
 
       &__upper-info{
@@ -161,11 +159,11 @@ body{
   }
   .form{
     height: 50px;
-    width: calc(100% - 380px);
-    background-color: #ddd;
-    position: fixed;
+    width: calc(100%-80px);
+    background-color: #ddd;;
     bottom: 0;
     padding: 20px 40px;
+    z-index:100;
     .new_message{
       height: 50px;
       width: 100%;
@@ -174,18 +172,22 @@ body{
         height: 50px;
         width: calc(100% - 115px);
         float: left;
+        position: relative;
         &__text{
           height: 50px;
           width: calc(100% - 50px);
-          padding-right: 40px;
           padding-left: 10px;
+          padding-right: 40px;
           font-size: 16px;
           color: #434A54;
+          z-index: 200;
         }
         &__image{
-          position : absolute;
-          top : 33px;
-          right : 165px;
+          line-height: 50px;
+          bottom: 52px;
+          left: 420px;
+          z-index: 300;
+          position: relative;
           font-size: 1.3rem;
           i{
             color: black;
@@ -205,4 +207,13 @@ body{
       }
     }
   }
+}
+
+.account-page__inner--left{
+  float: left;
+  width: 50%;
+}
+.account-page__inner--right{
+  float: left;
+  width: 50%;
 }

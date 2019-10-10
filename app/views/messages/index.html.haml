@@ -21,12 +21,11 @@
     .groups
       %a
       - current_user.groups.each do |group|
-        .group{id: "group#{group.id}", value: "#{group.name}"}
-          %p.group__group-name
+        .group{id: "#{group.id}", value: "#{group.name}"}
+          %p.group__group-name{id: "#{group.id}"}
             = link_to group.name ,group_messages_path(group.id), method: :get 
-
             %span<>
-          %p.group__latest-name
+          %p.group__latest-name{id: "#{group.id}ms"}
             = link_to group.show_last_message , group_messages_path , method: :get
             %span<>
 
@@ -46,6 +45,7 @@
           Edit
     .messages
       .message
+      = audio_tag("button.mp3",id:"audio")
       - @messages.each do |message|
         .message-box{id: "#{message.id}", value:"#{message.body}"}
           .message__upper-info
