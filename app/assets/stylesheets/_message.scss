@@ -118,6 +118,7 @@ body{
       bottom: 60px;
       float: right;
       margin-top: 25px;
+      text-decoration: none;
     }
   }
   .messages{
@@ -183,13 +184,12 @@ body{
           z-index: 200;
         }
         &__image{
-          width: 50px;
           bottom: 52px;
           z-index: 300;
           position: relative;
           font-size: 1.3rem;
-          padding-left: 500px;
-          height: 52px;
+          margin-left: 510px;
+          margin-right: 20px;
           float: right;
           left: 15px;
           top: -43px;
