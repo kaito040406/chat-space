@@ -39,10 +39,12 @@ $(function(){
     })
     .done(function(message){
       var pic = message.image.url ? `<img class="lower-message__image" src="${message.image.url}" alt="Ph thumb"></img>` : '';
-      var html = buildMessage1(message, pic); 
-      $('.messages').append(html);
-      $('form').get(0).reset();
+      mshtml = "";
+      mshtml = buildMessage1(message, pic); 
       document.querySelector("#audio").play();
+      $('.messages').append(mshtml);
+      $('form').get(0).reset();
+      
 
 
 
@@ -102,7 +104,6 @@ $(function(){
       last_message_id = $('.message-box').last().attr('id');
       last_message_text = $('.message-box').last().attr('value');
       group_name = $('.main-header__left-box__current-group').attr('value');
-      console.log(path);
       $.ajax({
         url: '/groups/' + group_id + '/api/messages',
         type: 'get',
