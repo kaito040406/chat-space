@@ -40,10 +40,28 @@ $(function() {
         if($("#user-search-field").val() == ""){
           $(".search-box").remove();
         }
-      }
-      else{
+      }else{
           $('#user-search-result').append(appendMsg());
       }
+
+      if($("#user-search-field").val() != ""){
+        if($('.search-box').attr("id") != "noname"){
+          addcount = $('.search-box').length;
+          delcount = $('.chat-group-menber').length;
+          adddata = [];
+          deldata = [];
+          for ( i = 0;  i < addcount;  i++  ){
+            adddata[i] = $('.search-box').eq(i).attr("value");
+            for ( k = 0;  k < delcount;  k++  ){
+              deldata[k] = $('.chat-group-menber').eq(k).attr("value");
+              if(adddata[i] == deldata[k]){
+                console.log("OK");
+                //$('.search-box').eq(i).remove();
+              };
+            };
+          };
+        };
+      };
     })
     .fail(function(){
       alert('検索に失敗しました');
@@ -67,9 +85,9 @@ $(function() {
     e.preventDefault();
     var boxid = $(this).attr("id");  
     var add = appendAdd($("#"+boxid+"name").text(), boxid);
-    $(".chat-group-menber").append(add);
+    $(".chat-group-menber2").append(add);
     $("#" + boxid).remove();
-    $("#" + boxid).unwrap();
+    //$("#" + boxid).unwrap();
     });
   });
 
