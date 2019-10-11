@@ -39,7 +39,7 @@ $(function(){
     })
     .done(function(message){
       var pic = message.image.url ? `<img class="lower-message__image" src="${message.image.url}" alt="Ph thumb"></img>` : '';
-      mshtml = "";
+      mshtml =null;
       mshtml = buildMessage1(message, pic); 
       document.querySelector("#audio").play();
       $('.messages').append(mshtml);

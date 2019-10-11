@@ -40,10 +40,45 @@ $(function() {
         if($("#user-search-field").val() == ""){
           $(".search-box").remove();
         }
-      }
-      else{
+      }else{
           $('#user-search-result').append(appendMsg());
       }
+
+      if($("#user-search-field").val() != ""){
+        if($('.search-box').attr("id") != "noname"){
+          $(document).ready(function(){
+            addcount = $('.search-box').length;
+            delcount = $('.chat-group-user2').length;
+            add = $('.search-box')
+            del = $('.chat-group-user2')
+            adddata = [];
+            deldata = [];
+            el = [];
+          });
+          console.log(addcount);
+            //処理
+          j = 0;
+          for ( i = 0;  i < addcount;  i++  ){
+            $(document).ready(function(){
+              adddata[i] = add.eq(i).attr("value");
+              console.log(adddata[i]);
+            });
+            for ( k = 0;  k < delcount;  k++  ){
+              $(document).ready(function(){
+                deldata[k] = del.eq(k).attr("value");
+                if(adddata[i] == deldata[k]){
+                  console.log(deldata[k]);
+                  el[j] = adddata[i]
+                  j = j +1;
+                };
+              });
+            };
+            for (j = 0; j < i+1; j++){
+              $('#'+ el[j]).remove();
+            }
+          };
+        };
+      };
     })
     .fail(function(){
       alert('検索に失敗しました');
@@ -52,7 +87,7 @@ $(function() {
 });
 
 function appendAdd(name, boxid){
-  var html2 = `<div class='chat-group-user' id = "${boxid}name3" value = "${boxid}">
+  var html2 = `<div class='chat-group-user2' id = "${boxid}name3" value = "${boxid}">
                 <input name='group[user_ids]][]' type='hidden' value='${boxid}'>
                 <p class='chat-group-user__name'>
                 ${name}
@@ -67,9 +102,9 @@ $(function() {
     e.preventDefault();
     var boxid = $(this).attr("id");  
     var add = appendAdd($("#"+boxid+"name").text(), boxid);
-    $(".chat-group-menber").append(add);
+    $(".chat-group-menber2").append(add);
     $("#" + boxid).remove();
-    $("#" + boxid).unwrap();
+    //$("#" + boxid).unwrap();
     });
   });
 

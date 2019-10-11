@@ -22,21 +22,20 @@
   .chat-group-form__field
     .chat-menber-left
       %label.chat-menber 現在のメンバー
-    .chat-group-menber 
-      .chat-group-user{id: current_user.id.to_s + "name3", value: current_user.id}
+    .chat-group-menber
+      .chat-group-user2{id: current_user.id.to_s + "name3", value: current_user.id}
         %input{:name => "group[user_ids]][]", type: "hidden", value: current_user.id}/
         %p.chat-group-user__name 
           =current_user.name 
         .user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn{:id => current_user.id.to_s + "name3"}
-    - if group.id != nil
+    .chat-group-menber2
       - group.users.each do |user|
         - if current_user.id != user.id
-          .chat-group-menber{id: user.id.to_s + "name3", value: user.id}
-            .chat-group-user{id: user.id.to_s + "name3", value: user.id}
-              %input{name: "group[user_ids]][]", type: "hidden", value: user.id}/
-              %p.chat-group-user__name 
-                =user.name 
-              .user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn{:id => user.id.to_s + "name3"} 削除
+          .chat-group-user2{id: user.id.to_s + "name3", value: user.id}
+            %input{name: "group[user_ids]][]", type: "hidden", value: user.id}/
+            %p.chat-group-user__name 
+              =user.name 
+            .user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn{:id => user.id.to_s + "name3"} 削除
       
   .chat-group-form__field
     .chat-group-form__menber--left

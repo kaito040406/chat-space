@@ -105,3 +105,21 @@ li {
     }
   }
 }
+
+
+.chat-group-menber2{
+  float: right;
+  width: 70%;
+}
+
+.chat-group-user2 {
+  padding: 0 15px;
+  line-height: 50px;
+  font-size: 14px;
+  border-bottom: 1px solid #ddd;
+}
+.chat-group-user2:after{
+  content: "";
+  clear: both;
+  display: block;
+}
