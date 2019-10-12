@@ -147,6 +147,6 @@ $(function(){
     }else{
 
     }
-  };setInterval(reloadMessages, 800);
+  };setInterval(reloadMessages, 2000);
 });
 

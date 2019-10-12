@@ -55,19 +55,15 @@ $(function() {
             deldata = [];
             el = [];
           });
-          console.log(addcount);
-            //処理
           j = 0;
           for ( i = 0;  i < addcount;  i++  ){
             $(document).ready(function(){
               adddata[i] = add.eq(i).attr("value");
-              console.log(adddata[i]);
             });
             for ( k = 0;  k < delcount;  k++  ){
               $(document).ready(function(){
                 deldata[k] = del.eq(k).attr("value");
                 if(adddata[i] == deldata[k]){
-                  console.log(deldata[k]);
                   el[j] = adddata[i]
                   j = j +1;
                 };
