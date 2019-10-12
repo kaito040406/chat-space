@@ -14,3 +14,4 @@ CarrierWave.configure do |config|
 
   config.fog_directory = 'hasegawa--test'
   config.asset_host = 'https://ap-northeast-1.amazonaws.com/hasegawa--test'
+end
