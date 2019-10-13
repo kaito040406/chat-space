@@ -3,7 +3,6 @@ $(function(){
   i = 0;
   j = 0;
   k = 0;
-
   function buildMessage1(message, pic){
     var html = `<div class="message-box" id = "${message.id}" value = "${message.body}">
                   <div class="message__upper-info">
@@ -105,28 +104,21 @@ $(function(){
       .done(function(messages){
         insertHTML = [];
         topHTML = [];        
-
         if ($(".message-box").length != 0){
-        //サイドバー自動更新はじまり
           $('#'+group_id).empty();
           if(last_message_text == ""){ last_message_text = "画像が投稿されています"};
           topHTML = buildtopHTML(last_message_text, group_id, group_name);
           $('#'+group_id).append(topHTML);
           topHTML = null;
-        //サイドバー自動更新おわり
         }
-
         messages.forEach(function(message){
           var pic = message.image.url ? `<img class="lower-message__image" src="${message.image.url}" alt="Ph thumb"></img>` : '';
           insertHTML[i] = buildMessageHTML(message, pic); 
             if(last_message_id < message.id || last_message_id == null){
-              console.log("自動更新アップデート発動");
               $('.messages').append(insertHTML[i]);
               la_ms = $('.message-box').last().attr('id');
               number = $('.message-box').length
                 la_ms2 = $('.message-box').eq(number-2).attr('id');
-                console.log(la_ms);
-                console.log(la_ms2);
                 if(la_ms == la_ms2){
                   if(last_message_id != null){
                     $('.message-box').last().remove();
