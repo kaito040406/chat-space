@@ -3,11 +3,11 @@ $(function(){
   i = 0;
   j = 0;
   k = 0;
-  
+
   function buildMessage1(message, pic){
     var html = `<div class="message-box" id = "${message.id}" value = "${message.body}">
                   <div class="message__upper-info">
-                    <p class="message__upper-info__talker">
+                    <p class="message__upper-info__talker" value = "${message.name}">
                       ${message.name}
                     </p>
                     <p class="message__upper-info__date">
@@ -41,22 +41,13 @@ $(function(){
       var pic = message.image.url ? `<img class="lower-message__image" src="${message.image.url}" alt="Ph thumb"></img>` : '';
       mshtml =null;
       mshtml = buildMessage1(message, pic); 
-      document.querySelector("#audio").play();
       $('.messages').append(mshtml);
       $('form').get(0).reset();
-      
-
-
-
       $('#'+group_id).empty();
       if(message.body == ""){ message.body = "画像が投稿されています"};
       topHTML = buildtopHTML(message.body, group_id, group_name);
       $('#'+group_id).append(topHTML);
-      topHTML = "";
-
-
-
-
+      topHTML = null;
       $('.messages').animate({
         scrollTop: $('.messages')[0].scrollHeight
       },600);
@@ -72,9 +63,9 @@ $(function(){
 
     var buildMessageHTML = function(message, pic) {
         //data-idが反映されるようにしている
-        var html = `<div class="message-box" id = "${message.id}"value = "${message.text}">
+        var html = `<div class="message-box" id = "${message.id}" value = "${message.text}">
                       <div class="message__upper-info">
-                        <p class="message__upper-info__talker">
+                        <p class="message__upper-info__talker" value = "${message.name}">
                           ${message.name}
                         </p>
                         <p class="message__upper-info__date">
@@ -103,6 +94,7 @@ $(function(){
     if (path == "/groups/" + group_id + "/messages"){
       last_message_id = $('.message-box').last().attr('id');
       last_message_text = $('.message-box').last().attr('value');
+      last_message_name = $('.message__upper-info__talker').last().attr('value');
       group_name = $('.main-header__left-box__current-group').attr('value');
       $.ajax({
         url: '/groups/' + group_id + '/api/messages',
@@ -112,8 +104,7 @@ $(function(){
       })
       .done(function(messages){
         insertHTML = [];
-        topHTML = [];
-        
+        topHTML = [];        
 
         if ($(".message-box").length != 0){
         //サイドバー自動更新はじまり
@@ -121,24 +112,32 @@ $(function(){
           if(last_message_text == ""){ last_message_text = "画像が投稿されています"};
           topHTML = buildtopHTML(last_message_text, group_id, group_name);
           $('#'+group_id).append(topHTML);
-          topHTML = "";
-        
+          topHTML = null;
         //サイドバー自動更新おわり
         }
 
         messages.forEach(function(message){
-          
           var pic = message.image.url ? `<img class="lower-message__image" src="${message.image.url}" alt="Ph thumb"></img>` : '';
           insertHTML[i] = buildMessageHTML(message, pic); 
-          if(last_message_id < message.id){
-            $('.messages').append(insertHTML[i]);
-            document.querySelector("#audio").play();
-            i = i + 1;
-            $('.messages').animate({
-              scrollTop: $('.messages')[0].scrollHeight
-            },600);
-          };
-          var pic = "";
+            if(last_message_id < message.id || last_message_id == null){
+              console.log("自動更新アップデート発動");
+              $('.messages').append(insertHTML[i]);
+              la_ms = $('.message-box').last().attr('id');
+              number = $('.message-box').length
+                la_ms2 = $('.message-box').eq(number-2).attr('id');
+                console.log(la_ms);
+                console.log(la_ms2);
+                if(la_ms == la_ms2){
+                  if(last_message_id != null){
+                    $('.message-box').last().remove();
+                  }
+                }
+              i = i + 1;
+              $('.messages').animate({
+                scrollTop: $('.messages')[0].scrollHeight
+              },600);
+            };
+          var pic = null;
         })
       })
       .fail(function(){
@@ -147,6 +146,6 @@ $(function(){
     }else{
 
     }
-  };setInterval(reloadMessages, 2000);
+  };setInterval(reloadMessages, 1200);
 });
 
